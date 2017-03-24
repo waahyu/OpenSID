@@ -838,6 +838,8 @@
 				break;
 
 			default:
+				$this->lampiran_orientasi = 'P';
+				$this->lampiran_ukuran = 'F4';
 				return $lampiran_surat;
 		}
 	}

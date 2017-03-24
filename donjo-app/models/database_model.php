@@ -852,6 +852,20 @@
         $this->db->where('url_surat',$url_surat)->update('tweb_surat_format',array('jenis'=>1));
       }
     }
+    // Tambah surat_permohonan_kartu_keluarga
+    $this->db->where('url_surat', 'surat_ubah_sesuaikan')->update('tweb_surat_format',array('kode_surat' => 'P-01'));
+    $query = "
+      INSERT INTO tweb_surat_format (nama, url_surat, lampiran, kode_surat, jenis) VALUES
+      ('Permohonan Kartu Keluarga', 'surat_permohonan_kartu_keluarga', 'f-1.15.php', 'S-36', 1)
+      ON DUPLICATE KEY UPDATE
+        nama = VALUES(nama),
+        url_surat = VALUES(url_surat),
+        lampiran = VALUES(lampiran),
+        kode_surat = VALUES(kode_surat),
+        jenis = VALUES(jenis);
+    ";
+    $this->db->query($query);
+
   }
 
   function kosongkan_db(){
